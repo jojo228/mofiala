@@ -8,5 +8,9 @@ class AgenceFilter(django_filters.FilterSet):
     Nom = CharFilter(field_name ="nom_agence", lookup_expr="icontains", label="Nom de l'agence")
 
 
+class ContribuableFilter(django_filters.FilterSet):
+    Nom = CharFilter(field_name ="first_name", lookup_expr="icontains", label="Nom de l'agence")
+
+
 
         

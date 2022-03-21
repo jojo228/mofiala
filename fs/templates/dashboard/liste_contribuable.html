@@ -1,0 +1,59 @@
+{% extends 'dashboard/dashboard.html'%}
+    
+{% block content %}
+
+
+<h3 class="text-center">Liste des contribuables</h3> <br/>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+
+                <form method="get">
+										{{myfilter.form}}
+
+                    <button class="btn btn-primary btn-sm" type="submit">Rechercher</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+	<br>
+
+<!-- [ Main Content ] start -->
+<table class="table table-hover">
+	<thead>
+		<tr>
+			
+			
+			<th scope="col">contribuable</th>
+            <th scope="col">nif</th>
+			<th scope="col">Action</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		{% for i in contribuable %}
+		<tr>
+			
+			
+			<td>{{i.first_name}} {{i.last_name}}</td>
+            <td>{{i.nif}}</td>
+			<td><a class="btn btn-sm btn-info" href="{% url 'profil_contribuable' i.id %}">Afficher</a></td>
+			
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}

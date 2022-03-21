@@ -1,3 +1,375 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Formulaire de localisation</title>
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 
-<h1>{{contribuable.first_name}}</h1>
+	<!-- Favicon icon -->
+	<link rel="icon" href="" type="image/x-icon">
+	<!-- fontawesome icon -->
+	<link rel="stylesheet" type="text/css" href="./static/assets/fonts/fontawesome/css/fontawesome-all.min.css">
+	<!-- animation css -->
+	<link rel="stylesheet" type="text/css" href="./static/assets/plugins/animation/css/animate.min.css">
+
+	<link rel="stylesheet" type="text/css"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+
+	<!-- vendor css -->
+	<link rel="stylesheet" type="text/css" href="./static/assets/css/style.css">
+	<link rel="stylesheet" href="./static/assets/css/dash.css">
+</head>
+
+<body class="">
+
+
+
+	<!-- [ Main Content ] start -->
+
+	<div class="pcoded-main-container">
+		<div class="col-lg-12">
+			<div class="card card-body ">
+
+				<div class="row">
+					<div class="col-md-9">
+
+
+						<div style="color: rgb(0, 0, 121); align-items: flex-start; font-weight: bold;"
+							class="form-group">
+							<img src="{% static 'assets_home/img/otr.png' %}" alt="">
+							<h6>COMMISSARIAT GÉNÉRAL</h6>
+							<h6>COMMISSARIAT DES IMPÔTS</h6>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+
+
+						<div style="color: rgb(0, 0, 121); text-align: center; font-weight: bold;" class="form-group">
+							<h4>REPUBLIQUE TOGOLAISE</h4>
+							<h5>Travail-Liberté-Patrie</h5>
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+
+
+
+				<div class="card-header">
+					<h2 style="color: rgb(0, 0, 121); text-align: center; font-weight: bold;">FORMULAIRE DE LOCALISATION
+						DU CONTRIBUABLE</h2>
+				</div>
+
+				<div class="row">
+					<div class="col-md-9">
+
+
+						<div class="form-group">
+							<label>Reservé à l'administration</label><br>
+							<label>Enregistré sous le </label><br>
+							<label for="">N°: _____________________</label>
+						</div>
+
+
+					</div>
+
+					<div class="col-md-3">
+
+						<div class="form-group">
+							<label>Service gestionnaire:________________</label><br>
+							<label>Date:____/____/____</label>
+						</div>
+					</div>
+				</div>
+
+
+				<div style="color: rgb(0, 0, 121);" class="card-body">
+					<h3>Identité du contribuable</h3>
+					<hr style="color: rgb(0, 0, 121);">
+					<div style="color: rgb(0, 0, 121);" class="row">
+						<div class="col-md-6">
+
+
+							<div class="form-group">
+								<label>Le contribuable est un: </label>
+								{{form.identity}}
+							</div>
+
+							<div class="form-group">
+								<label>NIF: </label>
+								{{form.nif}}
+							</div>
+
+							<div class="form-group">
+								<label>Dénomination:</label>
+								{{form.denomination}}
+							</div>
+
+							<div class="form-group">
+								<label>Le contribuable est propriétaire du local indiqué:</label>
+								{{form.is_owner}}
+							</div>
+
+							<div class="form-group">
+								<label>Tél:</label>
+								{{form.tel}}
+							</div>
+
+
+						</div>
+						<div class="col-md-3">
+
+							<div class="form-group">
+								<label>Quartier:</label>
+								{{form.quarter}}
+							</div>
+
+							<div class="form-group">
+								<label>Rue:</label>
+								{{form.rue}}
+							</div>
+
+
+							<div class="form-group">
+								<label>N° Porte:</label>
+								{{form.door_number}}
+							</div>
+
+							<div class="form-group">
+								<label>N° Parcelle:</label>
+								{{form.parcel_number}}
+							</div>
+
+							<div class="form-group">
+								<label>N° Îlot:</label>
+								{{form.lot_number}}
+							</div>
+						</div>
+
+						<div class="col-md-3">
+
+							<div class="form-group">
+								<label>N° Titre Foncier:</label>
+								{{form.land_title_number}}
+							</div>
+
+							<div class="form-group">
+								<label>Longitude:</label>
+								{{form.longitude}}
+							</div>
+
+
+							<div class="form-group">
+								<label>Latitude:</label>
+								{{form.latitude}}
+							</div>
+
+							<div class="form-group">
+								<label>Situation géographique:</label>
+								{{form.geo_situation}}
+							</div>
+
+						</div>
+					</div>
+
+					<hr style="color: rgb(0, 0, 121);">
+					<div style="color: rgb(0, 0, 121);" class="row">
+						<!-- [ basic-map ] start -->
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+									<h3>Plan de localisation</h3>
+
+								</div>
+								<div class="card-body">
+									<div style="height:400px; width: 930px;">
+										<iframe width="100%" height="100%" class="absolute inset-0" frameborder="0"
+											title="map" marginheight="0" marginwidth="0" scrolling="no"
+											src="https://maps.google.com/maps?width=100%&amp;height=400&amp;hl=en&amp;q={{form.latitude}},{{form.longitude}}&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+											style="filter: scale(100) contrast(1.2) opacity(0.4);"></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- [ Markers-map ] end -->
+
+					</div>
+
+					<br>
+					<div class="row">
+						<!-- [ basic-map ] start -->
+						<div class="col-lg-12">
+
+							<table style="color: rgb(0, 0, 121);" class="table table-bordered">
+								<thead>
+									<tr>
+										<th scope="col">DECLARANT</th>
+										<th scope="col">APPROBATION DU SERVICE GESTIONNAIRE</th>
+										<th scope="col">AGENT EN CHARGE</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th height="100" scope="row">
+											<h6>Je certifie exactes toutes les informations déclarées</h6>
+											<h6>sur le
+												présent formulaire :</h6>
+										</th>
+										<td height="100"></td>
+										<td height="100"></td>
+
+									</tr>
+
+
+								</tbody>
+							</table>
+
+
+						</div>
+
+
+						<!-- [ Markers-map ] end -->
+
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-4">
+
+
+							<div style="color: rgb(0, 0, 121);align-items: flex-start; text-align: start; font-weight: bold;"
+								class="form-group">
+
+								<h6>41, Rue des Impôts - 02 BP : 20823 Lomé 02 TOGO</h6>
+								<h6>Tél. +228 22 53 14 00; 22 53 14 42</h6>
+								<h6>Email: otr@otr.tg</h6>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+
+
+							<div style="color: rgb(36, 0, 119); text-align: center; font-weight: bold;"
+								class="form-group">
+								<h6>Renseignment</h6>
+								<h4 style="color: rgb(44, 119, 0); font: bold; font-size: large;">8201</h4>
+								<h6>Whatsapp: +228 90 99 41 01</h6>
+
+							</div>
+
+
+						</div>
+
+						<div class="col-md-4">
+
+
+							<div style="color: rgb(0, 0, 121); text-align: end; font-weight: bold;" class="form-group">
+								<h6>FEDERER POUR BATIR</h6>
+								<h6>www.otr.tg</h6>
+
+							</div>
+
+
+						</div>
+
+
+					</div>
+					
+
+
+
+					
+				</div>
+				
+
+			</div>
+			<br>
+		</div>
+		<div class="pcoded-main-container">
+			<div class="col-lg-12">
+				<div class="card card-body ">
+
+					<div class="row">
+						<div class="col-lg-12 col-xl-6">
+							<div class="card">
+								<div class="card card-body" style="height:600px;">
+									<div class="card-header">
+										<h5>Photo profil</h5>
+									</div>
+									<div class="card-body">
+										<div class="set-map" style="height: 300px">
+											<img src="{{form.photo_facade.url}}" alt=""
+												style="width: 600px; height: 500px;">
+												
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-12 col-xl-6">
+							<div class="card">
+								<div class="card card-body" style="height:600px;">
+									<div class="card-header">
+										<h5>Photo façade</h5>
+									</div>
+									<div class="card-body">
+										<div class="set-map" style="height: 300px">
+											<img src="{{form.photo_profil.url}}" alt=""
+												style="width: 600px; height: 500px;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-grid gap-2 col-2 mx-auto">
+			<a href="" class="btn btn-outline-info hidden-print"><span 
+					aria-hidden="true"></span>Modifié</a>
+
+			<button class="btn btn-outline-info hidden-print" onclick="imprimer()"><span
+					class="glyphicon glyphicon-print" aria-hidden="true"></span>Enregistré</button>
+			</form>
+		</div>
+
+
+
+		<script>function imprimer() {
+				window.print();
+			}
+		</script>
+
+</body>
+
+</html>

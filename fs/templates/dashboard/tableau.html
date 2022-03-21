@@ -1,0 +1,43 @@
+{% extends 'dashboard/dashboard.html'%}
+    
+{% block content %}
+
+{% if user.is_staff %}
+
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <a href="">
+                <div class="card text-center text-white  mb-3 shadow p-1 mb-5 bg-body rounded" id="total-orders">
+                    <div class="card-header">
+                        <h5 class="card-title">Nombre total de divisions</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">###</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="col">
+        <div class="col-md">
+            <a href="">
+                <div class="card text-center text-white  mb-3 shadow p-1 mb-5 bg-body rounded" id="orders-delivered">
+                    <div class="card-header">
+                        <h5 class="card-title">Nombre total de contribuable </h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">###</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {%endif%}
+    
+</div>
+
+
+{% endblock %}

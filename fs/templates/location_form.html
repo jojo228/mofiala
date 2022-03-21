@@ -22,35 +22,33 @@
                 <p>Remplissez tous les champs du formulaire pour passer à l'étape suivante</p>
                 <div class="row">
                     <div class="col-md-12 mx-0">
-                        <form id="msform" class="myForm" action="{% url 'ajouter_contribuable' contribuable.id %}" method="POST">
+                        <form id="msform" class="myForm" action="{% url 'ajouter_contribuable' c.id %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active" id="account"><strong>Identité</strong></li>
                                 <li id="personal"><strong>Indication complémentaire</strong></li>
                                 <li id="payment"><strong>Localisation</strong></li>
+                                <li id="payment"><strong>Téléverser</strong></li>
                                 <li id="confirm"><strong>Terminé</strong></li>
                             </ul> <!-- fieldsets -->
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">Identité du contribuable</h2>
                                     <br>
-                                    <label for="">Le contribuable est un:
+                                    <label for=""><h6 style="color: rgb(46, 44, 44);">Le contribuable est un:</h6> 
                                     
+                                            <div style="margin-left: 150px;" class="col-sm-12">
+                                            <label for="particulier">Particulier<input type="radio" id="particulier" name="identity" value="Particulier"></label>ou
                                             
-                                            <label for="particulier">Particulier<input type="radio" id="particulier" name="identity" value="Particulier"></label> 
-                                            <label for=""></label>
-                                            <label for=""></label>
-                                            <label for=""></label>
-                                            <label for=""></label>
-                                            
-                                            <label for="professionel">Professionel<input type="radio" id="professionel" name="identity"  value="Professionel"></label> 
                                         
+                                            <label for="professionel">Professionel<input type="radio" id="professionel" name="identity"  value="Professionel"></label> 
+                                        </div>
                                     </label>
                                      
                                     <div class="row">
-                                        <div class="col-6"> <label class="pay">Nom</label> <input type="text" name="first_name" placeholder="" autocomplete="off"/> </div>
-                                        <div class="col-6"> <label class="pay">Prénoms</label> <input type="text" name="last_name" placeholder="" autocomplete="off"/> </div>
+                                        <div class="col-6"> <label class="pay"><h6 style="color: rgb(46, 44, 44);">Nom</h6></label> <input type="text" name="first_name" placeholder="" autocomplete="off"/> </div>
+                                        <div class="col-6"> <label class="pay"><h6 style="color: rgb(46, 44, 44);">Prénoms</h6></label> <input type="text" name="last_name" placeholder="" autocomplete="off"/> </div>
                                     </div> 
                                         <input type="text" name="title" placeholder="Titre" />
                                         
@@ -90,8 +88,20 @@
                                     <input type="text" name="longitude" placeholder="Longitude" readonly />
                                     <input type="text" name="latitude" placeholder="Latitude" readonly/>
                                     
+                                </div> <input type="button" name="previous" class="previous action-button-previous" value="Retour" /> <input type="button" name="next" class="next action-button" value="Suivant" />
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">ajouter images du local</h2>
+                                    <div class="row">
+                                        <div class="col-6"> <label class="pay">Photo de façade</label> <input type="file" name="photo_facade" > </div>
+                                        <div class="col-6"> <label class="pay">Photo de profil</label> <input type="file" name="photo_profil"/> </div>
+                                    </div> 
+                                    
                                 </div> <input type="button" name="previous" class="previous action-button-previous" value="Retour" /> <input type="submit" name="submit" class="next action-button" value="Valider"></input>
                             </fieldset>
+
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title text-center">Success !</h2> <br><br>

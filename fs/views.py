@@ -19,14 +19,14 @@ from django.db.models import Q, F
 
 
 
+
+
 def Accueil(request):
 
-    
     return render(request, 'accueil.html', locals())
 
 
 
-@login_required(login_url='connexion')
 def Dashboard(request):
 
     if request.user.is_staff:
@@ -40,7 +40,7 @@ def Dashboard(request):
 
        contribuable =Contribuable.objects.filter(Q(agence=request.user.agence)).all().count()
 
-    return render(request, 'dashboard.html', locals())
+    return render(request, 'dashboard/tableau.html', locals())
 
 
 
@@ -175,57 +175,45 @@ def ListeAgence(request):
 
 def AjouterContribuable(request, id=None):
 
-    submit= request.POST.get("submit")
-
     if id != None:
-        contribuable  = Contribuable.objects.get(id=id)
+        c  = Contribuable.objects.get(id=id)
 
     else:
-        contribuable = Contribuable.objects.create()
-        contribuable.save()
+        c = Contribuable.objects.create()
+        c.save()
+        return render(request, 'location_form.html', locals())
 
-    
-
-    form = ContribuableForm()
 
     if request.method == 'POST':
 
+        contribuable  = Contribuable.objects.get(id=id)
+
+        form = ContribuableForm(request.POST, request.FILES, instance=contribuable)
         
-            form = ContribuableForm(request.POST or None)
-            contribuable  = Contribuable.objects.get(id=id)
-            """ first_name = request.POST.get('first_name')
-            last_name =form.cleaned_data.get('last_name')
-            title = form.cleaned_data.get('identity')
-            nif = form.cleaned_data.get('nif')
-            denomination = form.cleaned_data.get('denomination')
-            is_owner = form.cleaned_data.get('is_owner')
-            quarter = form.cleaned_data.get('quarter')
-            rue = form.cleaned_data.get('rue')
-            door_number = form.cleaned_data.get('door_number')
-            lot_number = form.cleaned_data.get('lot_number')
-            parcel_number = form.cleaned_data.get('parcel_number')
-            land_title_number = form.cleaned_data.get('land_title_number')
-            tel = form.cleaned_data.get('tel')
-            longitude = form.cleaned_data.get('longitude')
-            latitude = form.cleaned_data.get('latitude')
-            geo_situation = form.cleaned_data.get('geo_situation') """
+        """ first_name = request.POST.get('first_name')
+        last_name =request.POST.get('last_name')
+        title = request.POST.get('identity')
+        nif = request.POST.get('nif')
+        denomination = request.POST.get('denomination')
+        is_owner = request.POST.get('is_owner')
+        quarter = request.POST.get('quarter')
+        rue = request.POST.get('rue')
+        door_number = request.POST.get('door_number')
+        lot_number = request.POST.get('lot_number')
+        parcel_number = request.POST.get('parcel_number')
+        land_title_number = request.POST.get('land_title_number')
+        tel = request.POST.get('tel')
+        longitude = request.POST.get('longitude')
+        latitude = request.POST.get('latitude')
+        geo_situation = request.POST.get('geo_situation') """
 
-            if form.is_valid():
-
-                form.save()
-
-            
+        if form.is_valid():
+            form.save()
 
             return HttpResponseRedirect(reverse(ImprimerContribuable, args=(id,)))
 
+    context = {'form':form}
 
-    """ args = {'form':form, 'first_name':first_name, 'last_name':last_name, 'title':title, 'nif':nif, 'denomination':denomination, 'is_owner':is_owner, 
-    'quarter':quarter, 'rue':rue, 'door_number':door_number, 'lot_number':lot_number, 'parcel_number':parcel_number, 'land_title_number':land_title_number, 'tel':tel, 
-    'longitude':longitude, 'latitude':latitude, 'geo_situation':geo_situation, 'submit':submit} """
-
-        
-
-    
     return render(request, 'location_form.html', locals())
 
 
@@ -238,16 +226,15 @@ def ImprimerContribuable(request, pkey):
 
 
 
-@login_required(login_url='connexion')
 def ModifierContribuable(request, pkey):
    
-    structure  = Contribuable.objects.get(id=pkey)
-    form = ContribuableForm(instance=structure)
+    contribuable  = Contribuable.objects.get(id=pkey)
+    form = ContribuableForm(instance=contribuable)
     if request.method == 'POST':
-        form = ContribuableForm(request.POST, instance=structure)
+        form = ContribuableForm(request.POST, instance=contribuable)
         if form.is_valid():
             form.save()
-        return redirect('profil_contribuable', structure.id)
+        return redirect('profil_contribuable', contribuable.id)
             
     context = {'form':form}
     return render(request, 'ajouter_contribuable.html', context)        
@@ -256,48 +243,41 @@ def ModifierContribuable(request, pkey):
 @login_required(login_url='connexion')
 def SupprimerContribuable(request, pkey):
 
-    Contribuable = Contribuable.objects.get(id=pkey)
+    contribuable = Contribuable.objects.get(id=pkey)
     if request.method == 'POST':
-        Contribuable.delete()
-        return redirect('liste_Contribuable')
+        contribuable.delete()
+        return redirect('liste_contribuable')
 
-    context = {'Contribuable':Contribuable}
-    return render(request, 'supprimerContribuable.html', context) 
+    context = {'Contribuable':contribuable}
+    return render(request, 'dashboard/supprimercontribuable.html', context) 
 
 
 @login_required(login_url='connexion')
 def ProfilContribuable(request, pkey):
     profile = Contribuable.objects.get(id=pkey)
 
-    fact = profile.caution_set.all()
-    garantie = profile.garantie_set.all()
+    context = {'profil':profile,}
 
-    tax_total_payé = fact.count()
-    tax_total_non_payé = fact.count()
-
-
-    context = {'profil':profile, 'fact':fact, 'garantie':garantie,
-     'tax_total_payé':tax_total_payé, 'tax_total_non_payé':tax_total_non_payé}
-    return render(request, 'profil_Contribuable.html', context)
+    return render(request, 'dashboard/profil_contribuable.html', context)
 
 
 
 @login_required(login_url='connexion')
 def ListeContribuable(request):
-    profile = request.user.agence
-
-    if request.user.is_staff:
-        Contribuable = Contribuable.objects.all().order_by('agence')
-        myfilter = ContribuableFilter(request.GET, queryset=Contribuable)
-        Contribuable = myfilter.qs
-    else:
-        Contribuable = Contribuable.objects.filter(agence=profile).order_by('-nom_Contribuable')
-        myfilter = ContribuableFilter(request.GET, queryset=Contribuable)
-        Contribuable = myfilter.qs
     
 
-    context =  {'Contribuable':Contribuable, 'myfilter':myfilter}
-    return render(request, 'liste_Contribuable.html', context)
+    if request.user.is_staff:
+        contribuable = Contribuable.objects.all().order_by('-first_name')
+        myfilter = ContribuableFilter(request.GET, queryset=contribuable)
+        contribuable = myfilter.qs
+    else:
+        contribuable = Contribuable.objects.filter().order_by('-first_name')
+        myfilter = ContribuableFilter(request.GET, queryset=contribuable)
+        contribuable = myfilter.qs
+    
+
+    context =  {'contribuable':contribuable, 'myfilter':myfilter}
+    return render(request, 'dashboard/liste_contribuable.html', context)
 
 
 
