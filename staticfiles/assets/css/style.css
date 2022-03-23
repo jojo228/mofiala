@@ -3940,7 +3940,7 @@ pre[class*=language-]:before {
 
 .pcoded-navbar.brand-blue .header-logo,
 .pcoded-navbar[class*="navbar-"].brand-blue .header-logo {
-    background: #fff;
+    background: #0288d1;
 }
 
 .pcoded-navbar.brand-blue .header-logo .b-bg,

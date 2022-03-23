@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!e*d#ryjsg^rn&f)#zqe4!jz7lw_d^3(9m^!^7#aa%u+(fk039'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mofiala.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -73,6 +73,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mofiala.wsgi.application'
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 
 # Database

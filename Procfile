@@ -1,0 +1,1 @@
+web: gunicorn mofiala.wsgi --log-file -
