@@ -33,7 +33,7 @@ class Contribuable(models.Model):
     longitude = models.CharField(max_length=200, blank=True)
     latitude = models.CharField(max_length=200, blank=True)
     geo_situation = models.CharField(max_length=200)
-    photo_facade = models.ImageField(null=True, blank=True)
+    photo_facade = models.ImageField(null=True, blank=True, upload_to="images")
     date = models.DateField(auto_now=True)
 
 
