@@ -34,7 +34,6 @@ class Contribuable(models.Model):
     latitude = models.CharField(max_length=200, blank=True)
     geo_situation = models.CharField(max_length=200)
     photo_facade = models.ImageField(null=True, blank=True)
-    photo_profil = models.ImageField(null=True,blank=True)
     date = models.DateField(auto_now=True)
 
 
